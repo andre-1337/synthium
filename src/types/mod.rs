@@ -70,8 +70,8 @@ impl Display for FloatingPointTypes {
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct SignedInteger {
-    base_type: SignedIntegerTypes,
-    value: i64,
+    pub base_type: SignedIntegerTypes,
+    pub value: i64,
 }
 
 impl SignedInteger {
@@ -91,8 +91,8 @@ impl Display for SignedInteger {
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct UnsignedInteger {
-    base_type: UnsignedIntegerTypes,
-    value: u64,
+    pub base_type: UnsignedIntegerTypes,
+    pub value: u64,
 }
 
 impl UnsignedInteger {
@@ -112,8 +112,8 @@ impl Display for UnsignedInteger {
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct FloatingPoint {
-    base_type: FloatingPointTypes,
-    value: f64,
+    pub base_type: FloatingPointTypes,
+    pub value: f64,
 }
 
 impl FloatingPoint {
@@ -133,8 +133,8 @@ impl Display for FloatingPoint {
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct UserDefinedType {
-    file: &'static str,
-    name: &'static str,
+    pub file: &'static str,
+    pub name: &'static str,
 }
 
 impl UserDefinedType {
@@ -154,10 +154,10 @@ impl Display for UserDefinedType {
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Pointer {
-    alignment: usize,
-    offset: usize,
-    references: usize,
-    base_type: SimpleType,
+    pub alignment: usize,
+    pub offset: usize,
+    pub references: usize,
+    pub base_type: SimpleType,
 }
 
 impl Pointer {
@@ -197,9 +197,9 @@ impl PointerInfo for Pointer {
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Array {
-    size: usize,
-    is_runtime_sized: bool,
-    base_type: SimpleType,
+    pub size: usize,
+    pub is_runtime_sized: bool,
+    pub base_type: SimpleType,
 }
 
 impl Array {

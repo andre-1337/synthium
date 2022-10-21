@@ -1,52 +1,36 @@
+use std::{ fmt::{ Display, Formatter, Result } };
+
 pub mod lexer;
 pub mod token;
 
 use lexer::*;
 use token::*;
 
-pub struct Span {
-    start: usize,
-    end: usize,
-}
-
-impl Span {
-    pub fn new(start: usize, end: usize) -> Self {
-        Self {
-            start,
-            end,
-        }
-    }
-}
-
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Location {
-    start: Span,
-    end: Span,
+    pub line: usize,
+    pub column: usize,
 }
 
 impl Location {
-    pub fn from_span(span: Span) -> Self {
+    pub fn new(line: usize, column: usize) -> Self {
         Self {
-            start: Span {
-                start: span.start,
-                end: span.end,
-            },
-            end: Span {
-                start: span.start,
-                end: span.end,
-            }
+            line,
+            column
         }
     }
 
-    pub fn from_spans(span1: Span, span2: Span) -> Self {
-        Self {
-            start: Span {
-                start: span1.start,
-                end: span1.end,
-            },
-            end: Span {
-                start: span2.start,
-                end: span2.end,
-            }
-        }
+    #[inline] pub fn get_line(&self) -> usize {
+        self.line
+    }
+
+    #[inline] pub fn get_column(&self) -> usize {
+        self.column
+    }
+}
+
+impl Display for Location {
+    fn fmt(&self, f: &mut Formatter) -> Result {
+        write!(f, "{}:{}", self.line, self.column)
     }
 }
