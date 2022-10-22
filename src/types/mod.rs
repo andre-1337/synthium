@@ -383,6 +383,6 @@ mod tests {
         let u8_arr = Type::Complex(ComplexType::Array(Array::new(0, true, SimpleType::Uint(UnsignedInteger::new(UnsignedIntegerTypes::Uint8, 0)))));
         let str = Type::Simple(SimpleType::String);
 
-        assert!(Typechecker::coerce_types(u8_arr, str) == true);
+        assert!(Typechecker::coerce_types(u8_arr, str));
     }
 }

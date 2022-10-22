@@ -1,13 +1,13 @@
 use std::{ fmt::{ Display, Formatter, Result } };
 
 use crate::types::*;
-use crate::lexer::Location;
+use crate::lexer::Span;
 
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Token {
     token_type: TokenType,
-    location: Location,
+    location: Span,
     text: &'static str
 
 }

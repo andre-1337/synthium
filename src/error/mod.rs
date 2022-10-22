@@ -1,6 +1,6 @@
 use std::{ fmt::{ Display, Formatter, Result } };
 
-use crate::lexer::{ Location };
+use crate::lexer::{ Span };
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum ErrorType {
@@ -23,24 +23,24 @@ impl Display for ErrorType {
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Error {
-    pub location: Location,
+    pub location: Span,
     pub error_type: ErrorType,
     pub message: &'static str,
 }
 
 impl Error {
-    pub fn new(line: usize, column: usize, error_type: ErrorType, message: &'static str) -> Self {
+    pub fn new(start: usize, end: usize, error_type: ErrorType, message: &'static str) -> Self {
         Self {
-            location: Location {
-                line,
-                column,
+            location: Span {
+                start,
+                end,
             },
             error_type,
             message,
         }
     }
 
-    #[inline] pub fn get_location(&self) -> Location {
+    #[inline] pub fn get_location(&self) -> Span {
         self.location
     }
 
